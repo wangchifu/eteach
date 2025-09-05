@@ -21,7 +21,7 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://drive.google.com/a/chc.edu.tw"><img src="{{ asset('assets/drive.png') }}" /></a>
+                            <a href="https://drive.google.com/a/chc.edu.tw" target="_blank"><img src="{{ asset('assets/drive.png') }}" /></a>
                             <h5 class="fw-bolder">Google Drive雲端硬碟</h5>                                                        
                         </div>
                     </div>                                        
@@ -31,7 +31,7 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://mail.google.com/a/chc.edu.tw"><img src="{{ asset('assets/gmail.png') }}" /></a>
+                            <a href="https://mail.google.com/a/chc.edu.tw" target="_blank"><img src="{{ asset('assets/gmail.png') }}" /></a>
                             <h5 class="fw-bolder">Gmail信箱</h5>                                                        
                         </div>
                     </div>                                        
@@ -41,7 +41,7 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://meet.google.com"><img src="{{ asset('assets/meet.png') }}" /></a>
+                            <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://meet.google.com" target="_blank"><img src="{{ asset('assets/meet.png') }}" /></a>
                             <h5 class="fw-bolder">Meet線上會議</h5>                                                        
                         </div>
                     </div>                                        
@@ -51,7 +51,7 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://classroom.google.com"><img src="{{ asset('assets/classroom.png') }}" /></a>
+                            <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://classroom.google.com" target="_blank"><img src="{{ asset('assets/classroom.png') }}" /></a>
                             <h5 class="fw-bolder">Classroom線上教室</h5>                                                        
                         </div>
                     </div>                                        

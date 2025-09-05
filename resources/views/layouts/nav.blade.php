@@ -20,7 +20,7 @@
             </ul>
             @if(!empty(session('user_data')))
                 <i class="bi bi-emoji-smile me-1"></i>  
-                {{ session('user_data') }} 
+                {{ session('user_data') }}　
                 <a class="btn btn-outline-dark" href="{{ route('logout') }}">                
                     登出               
                 </a>
