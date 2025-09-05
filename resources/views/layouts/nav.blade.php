@@ -18,12 +18,17 @@
                 </li>
                 -->
             </ul>
-            
-            <a class="btn btn-outline-dark" href="{{ route('sso') }}">
-                <?php $x=1; ?>
-                @if($x==2)<i class="bi bi-emoji-smile me-1"></i>@endif
-                OpenID 登入                
-            </a>
+            @if(!empty(session('user_data')))
+                <i class="bi bi-emoji-smile me-1"></i>  
+                {{ session('user_data') }} 
+                <a class="btn btn-outline-dark" href="{{ route('logout') }}">                
+                    登出               
+                </a>
+            @else
+                <a class="btn btn-outline-dark" href="{{ route('sso') }}">                                
+                    OpenID 登入                
+                </a>
+            @endif            
         </div>
     </div>
 </nav>

@@ -103,26 +103,19 @@ class OpenIDController extends Controller
 
 
       // 把access token記到session中
-      print_r($userinfo);
-      echo "<hr>";
-      print_r($profile);      
-      echo "<hr>";
-      print_r($edufile);      
-      die();
-
-      $user_obj['username'] = $userinfo['sub'];
-      $user_obj['password'] = "openID";
-      $user_obj['success'] = 1;
-      $user_obj['name'] = $userinfo['name'];      
-      $user_obj['personid'] = $profile['personid'];
-      $user_obj['code'] = $edufile['schoolid'];
-        $schools_name = config('ge.schools_name');
-      $user_obj['school'] = $schools_name[$user_obj['code']];
-      $user_obj['title'] = $edufile['titles'][0]['titles'][0];
-      $user_obj['kind'] = "";         
-            
+      //print_r($userinfo);
+      //echo "<hr>";
+      //print_r($profile);      
+      //echo "<hr>";
+      //print_r($edufile);      
+      //die();
       
-
+      $user_obj['name'] = $userinfo['name'];      
+      $user_obj['code'] = $edufile['schoolid'];
+        $schools_name = config('eteach.schools_name');
+      $user_obj['school'] = $schools_name[$user_obj['code']];
+      session(['user_data'=>$user_obj['school']." ".$user_obj['name']]);
+      return redirect('/');     
     }
 
     public function logout()
