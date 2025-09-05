@@ -17,7 +17,9 @@
         <!-- Navigation-->
         @include('layouts.nav')
         <!-- Header-->
-        @yield('header')
+        @if(!empty(session('user_data')))
+            @yield('header')
+        @endif
         <!-- Section-->
         @yield('content')
         <!-- Footer-->
