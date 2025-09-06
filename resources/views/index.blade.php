@@ -153,7 +153,7 @@ setInterval(() => {
         .then(res => {
             if (res.status === 401 || res.status === 419) {
                 // 401 未授權 / 419 session 過期
-                window.location.href = '/'; // 直接導回首頁
+                window.location.href = '/logout'; // 直接導向登出
             }
         })
         .catch(err => {
@@ -162,7 +162,7 @@ setInterval(() => {
 }, 60000); // 60000 毫秒 = 1 分鐘
 
 // Laravel session.lifetime 單位是分鐘
-let sessionLifetime = {{ config('session.lifetime') }}; 
+let sessionLifetime = {{ config('session.lifetime') }};
 let remainingSeconds = sessionLifetime * 60;
 
 const timerEl = document.getElementById('session-timer');
@@ -175,8 +175,8 @@ function formatTime(sec) {
 
 function updateTimer() {
     if (remainingSeconds <= 0) {
-        timerEl.textContent = "Session 已過期";
-        clearInterval(timerInterval); // 停止倒數
+        window.location.href = '/logout'; // 時間到直接登出
+        clearInterval(timerInterval);
     } else {
         timerEl.textContent = `剩餘時間: ${formatTime(remainingSeconds)}`;
         remainingSeconds--;
