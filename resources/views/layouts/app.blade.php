@@ -19,6 +19,8 @@
         <!-- Header-->
         @if(empty(session('user_data')))
             @yield('header')
+        @else
+            <div id="session-timer">剩餘時間: -- 分鐘</div>
         @endif
         <!-- Section-->
         @yield('content')

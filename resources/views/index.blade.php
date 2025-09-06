@@ -141,13 +141,24 @@
     </div>
 </section>
 <script>
-setInterval(() => {
-    fetch('/ping', {credentials: 'same-origin'})
-        .then(res => {
-            if (res.status === 401 || res.status === 419) {
-                window.location.href = '/';
-            }
-        })
-}, 60000); // 每分鐘檢查一次
+// Laravel session.lifetime 單位是分鐘
+let sessionLifetime = {{ config('session.lifetime') }}; // 例如 120
+let remaining = sessionLifetime;
+
+const timerEl = document.getElementById('session-timer');
+
+function updateTimer() {
+    remaining--;
+    if (remaining <= 0) {
+        // 時間到，導回登入頁
+        window.location.href = '/login';
+    } else {
+        timerEl.textContent = `剩餘時間: ${remaining} 分鐘`;
+    }
+}
+
+// 每分鐘更新一次
+updateTimer(); // 先顯示初始時間
+setInterval(updateTimer, 60000);
 </script>
 @endsection
