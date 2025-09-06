@@ -13,9 +13,10 @@
             </div>
         </header>            
     @else        
-        <div class="container px-4 px-lg-5 my-5 text-center">
+        <div class="container px-4 px-lg-5 my-2 text-center">
             <div id="session-timer">剩餘時間: -- 分鐘</div>
         </div>
+        <form id="logout-form" action="/logout" method="get"></form>
     @endif
 @endsection
 
@@ -170,12 +171,13 @@ const timerEl = document.getElementById('session-timer');
 function formatTime(sec) {
     let m = Math.floor(sec / 60);
     let s = sec % 60;
-    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
 }
 
 function updateTimer() {
     if (remainingSeconds <= 0) {
-        window.location.href = '/logout'; // 時間到直接登出
+        // 倒數結束，用 form submit 登出
+        document.getElementById('logout-form').submit();
         clearInterval(timerInterval);
     } else {
         timerEl.textContent = `剩餘時間: ${formatTime(remainingSeconds)}`;
@@ -186,6 +188,5 @@ function updateTimer() {
 // 每秒更新
 updateTimer();
 let timerInterval = setInterval(updateTimer, 1000);
-
 </script>
 @endsection
