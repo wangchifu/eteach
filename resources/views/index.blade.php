@@ -3,14 +3,22 @@
 @section('title','首頁')
 
 @section('header')
-<header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">歡迎使用數位教學入口網</h1>
-            <p class="lead fw-normal text-white-50 mb-0">請先由上方登入，再點選下方圖示</p>
-        </div>
-    </div>
-</header>
+    @if(empty(session('user_data')))
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">歡迎使用數位教學入口網</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">請先由上方登入，再點選下方圖示</p>
+                </div>
+            </div>
+        </header>            
+    @else
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div id="session-timer">剩餘時間: -- 分鐘</div>
+            </div>
+        </header>                
+    @endif
 @endsection
 
 @section('content')
@@ -142,7 +150,7 @@
 </section>
 <script>
 // Laravel session.lifetime 單位是分鐘
-let sessionLifetime = {{ config('session.lifetime') }}; // 例如 120
+let sessionLifetime = {{ config('session.lifetime') }};
 let remainingSeconds = sessionLifetime * 60;
 
 const timerEl = document.getElementById('session-timer');
@@ -155,15 +163,28 @@ function formatTime(sec) {
 
 function updateTimer() {
     if (remainingSeconds <= 0) {
-        window.location.href = '/login'; // 自動登出
+        window.location.href = '/login';
     } else {
         timerEl.textContent = `剩餘時間: ${formatTime(remainingSeconds)}`;
         remainingSeconds--;
     }
 }
 
-// 每秒更新一次
-updateTimer(); // 先顯示初始時間
+// 每秒更新前端倒數
 setInterval(updateTimer, 1000);
+
+// 每分鐘 ping 後端檢查是否已過期
+setInterval(() => {
+    fetch('/ping', {credentials: 'same-origin'})
+        .then(res => {
+            if (res.status === 401 || res.status === 419) {
+                window.location.href = '/login';
+            }
+        })
+        .catch(err => console.error('Ping 失敗:', err));
+}, 60000);
+
+// 初始化顯示一次
+updateTimer();
 </script>
 @endsection
