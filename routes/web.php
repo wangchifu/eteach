@@ -20,3 +20,7 @@ Route::get('/', [HomeController::class,'index'])->name('index');
 Route::get('sso', [OpenIDController::class,'sso'])->name('sso');
 Route::get('auth/callback', [OpenIDController::class,'callback'])->name('callback');
 Route::get('logout', [OpenIDController::class,'logout'])->name('logout');
+
+Route::get('/ping', function () {
+    return response()->json(['ok' => true]);
+})->middleware('check.session');

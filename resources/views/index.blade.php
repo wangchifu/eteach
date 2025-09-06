@@ -130,4 +130,14 @@
         </div>
     </div>
 </section>
+<script>
+setInterval(() => {
+    fetch('/ping', {credentials: 'same-origin'})
+        .then(res => {
+            if (res.status === 401 || res.status === 419) {
+                window.location.href = '/';
+            }
+        })
+}, 5000); // 每分鐘檢查一次
+</script>
 @endsection
