@@ -143,22 +143,27 @@
 <script>
 // Laravel session.lifetime 單位是分鐘
 let sessionLifetime = {{ config('session.lifetime') }}; // 例如 120
-let remaining = sessionLifetime;
+let remainingSeconds = sessionLifetime * 60;
 
 const timerEl = document.getElementById('session-timer');
 
+function formatTime(sec) {
+    let m = Math.floor(sec / 60);
+    let s = sec % 60;
+    return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+}
+
 function updateTimer() {
-    remaining--;
-    if (remaining <= 0) {
-        // 時間到，導回登入頁
-        window.location.href = '/login';
+    if (remainingSeconds <= 0) {
+        window.location.href = '/login'; // 自動登出
     } else {
-        timerEl.textContent = `剩餘時間: ${remaining} 分鐘`;
+        timerEl.textContent = `剩餘時間: ${formatTime(remainingSeconds)}`;
+        remainingSeconds--;
     }
 }
 
-// 每分鐘更新一次
+// 每秒更新一次
 updateTimer(); // 先顯示初始時間
-setInterval(updateTimer, 60000);
+setInterval(updateTimer, 1000);
 </script>
 @endsection
