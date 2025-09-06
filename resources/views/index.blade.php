@@ -178,7 +178,7 @@ setInterval(() => {
     fetch('/ping', {credentials: 'same-origin'})
         .then(res => {
             if (res.status === 401 || res.status === 419) {
-                window.location.href = '/login';
+                window.location.href = '/';
             }
         })
         .catch(err => console.error('Ping 失敗:', err));
