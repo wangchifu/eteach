@@ -127,6 +127,16 @@
                     </div>                                        
                 </div>
             </div>
+            <div class="col mb-5">
+                <div class="card h-40">
+                    <div class="card-body p-4">
+                        <div class="text-center">                            
+                            <a href="https://auth.openai.com/log-in-or-create-account" target="_blank"><img src="{{ asset('assets/chatgpt.png') }}" /></a>
+                            <h5 class="fw-bolder">chatgpt</h5>                                                        
+                        </div>
+                    </div>                                        
+                </div>
+            </div>
         </div>
     </div>
 </section>
