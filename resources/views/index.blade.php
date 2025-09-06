@@ -138,6 +138,6 @@ setInterval(() => {
                 window.location.href = '/';
             }
         })
-}, 5000); // 每分鐘檢查一次
+}, 60000); // 每分鐘檢查一次
 </script>
 @endsection
