@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 
 // RP申請獲得
@@ -79,6 +80,9 @@ class OpenIDController extends Controller
       // 未來需要取得其他scope再用此access token 來做
       session(['access_token'=>$acctoken->access_token]);
       session(['id_token'=>$acctoken->id_token]);
+
+      // 存到 storage/app/id_token.txt
+        Storage::disk('local')->put('id_token.txt', session('id_token'));
       
         //驗證 access token
       if(!session()->has('access_token')){
@@ -124,7 +128,8 @@ class OpenIDController extends Controller
         Auth::logout();        
         $url = "https://chc.sso.edu.tw/oidc/v1/logout-to-go";
         $post_logout_redirect_uri = env('APP_URL');
-        $id_token_hint = session('id_token');
+        //$id_token_hint = session('id_token');
+        $id_token_hint = Storage::disk('local')->get('id_token.txt');
         $link = $url . "?post_logout_redirect_uri=".$post_logout_redirect_uri."&id_token_hint=" . $id_token_hint;
 
         Session::flush();
