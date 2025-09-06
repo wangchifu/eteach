@@ -12,12 +12,10 @@
                 </div>
             </div>
         </header>            
-    @else
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div id="session-timer">剩餘時間: -- 分鐘</div>
-            </div>
-        </header>                
+    @else        
+        <div class="container px-4 px-lg-5 my-5 text-center">
+            <div id="session-timer">剩餘時間: -- 分鐘</div>
+        </div>
     @endif
 @endsection
 
