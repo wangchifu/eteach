@@ -147,8 +147,22 @@
     </div>
 </section>
 <script>
+// 每分鐘 ping 一次，檢查是否過期
+setInterval(() => {
+    fetch('/ping', {credentials: 'same-origin'})
+        .then(res => {
+            if (res.status === 401 || res.status === 419) {
+                // 401 未授權 / 419 session 過期
+                window.location.href = '/'; // 直接導回首頁
+            }
+        })
+        .catch(err => {
+            console.error('Ping 失敗:', err);
+        });
+}, 60000); // 60000 毫秒 = 1 分鐘
+
 // Laravel session.lifetime 單位是分鐘
-let sessionLifetime = {{ config('session.lifetime') }};
+let sessionLifetime = {{ config('session.lifetime') }}; 
 let remainingSeconds = sessionLifetime * 60;
 
 const timerEl = document.getElementById('session-timer');
@@ -156,33 +170,22 @@ const timerEl = document.getElementById('session-timer');
 function formatTime(sec) {
     let m = Math.floor(sec / 60);
     let s = sec % 60;
-    return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
 }
 
 function updateTimer() {
     if (remainingSeconds <= 0) {
-        window.location.href = '/login';
+        timerEl.textContent = "Session 已過期";
+        clearInterval(timerInterval); // 停止倒數
     } else {
         timerEl.textContent = `剩餘時間: ${formatTime(remainingSeconds)}`;
         remainingSeconds--;
     }
 }
 
-// 每秒更新前端倒數
-setInterval(updateTimer, 1000);
-
-// 每分鐘 ping 後端檢查是否已過期
-setInterval(() => {
-    fetch('/ping', {credentials: 'same-origin'})
-        .then(res => {
-            if (res.status === 401 || res.status === 419) {
-                window.location.href = '/';
-            }
-        })
-        .catch(err => console.error('Ping 失敗:', err));
-}, 60000);
-
-// 初始化顯示一次
+// 每秒更新
 updateTimer();
+let timerInterval = setInterval(updateTimer, 1000);
+
 </script>
 @endsection
