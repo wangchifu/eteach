@@ -147,46 +147,50 @@
         </div>
     </div>
 </section>
-<script>
-// 每分鐘 ping 一次，檢查是否過期
-setInterval(() => {
-    fetch('/ping', {credentials: 'same-origin'})
-        .then(res => {
-            if (res.status === 401 || res.status === 419) {
-                // 401 未授權 / 419 session 過期
-                window.location.href = '/logout'; // 直接導向登出
-            }
-        })
-        .catch(err => {
-            console.error('Ping 失敗:', err);
-        });
-}, 60000); // 60000 毫秒 = 1 分鐘
+@if(!empty(session('user_data')))
+    <script>
+    // 每分鐘 ping 一次，檢查是否過期
+    setInterval(() => {
+        fetch('/ping', {credentials: 'same-origin'})
+            .then(res => {
+                if (res.status === 401 || res.status === 419) {
+                    // 401 未授權 / 419 session 過期
+                    window.location.href = '/logout'; // 直接導向登出
+                }
+            })
+            .catch(err => {
+                console.error('Ping 失敗:', err);
+            });
+    }, 60000); // 60000 毫秒 = 1 分鐘
+    
 
-// Laravel session.lifetime 單位是分鐘
-let sessionLifetime = {{ config('session.lifetime') }};
-let remainingSeconds = sessionLifetime * 60;
 
-const timerEl = document.getElementById('session-timer');
+    // Laravel session.lifetime 單位是分鐘
+    let sessionLifetime = {{ config('session.lifetime') }};
+    let remainingSeconds = sessionLifetime * 60;
 
-function formatTime(sec) {
-    let m = Math.floor(sec / 60);
-    let s = sec % 60;
-    return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-}
+    const timerEl = document.getElementById('session-timer');
 
-function updateTimer() {
-    if (remainingSeconds <= 0) {
-        // 倒數結束，用 form submit 登出
-        document.getElementById('logout-form').submit();
-        clearInterval(timerInterval);
-    } else {
-        timerEl.textContent = `剩餘時間: ${formatTime(remainingSeconds)}`;
-        remainingSeconds--;
+    function formatTime(sec) {
+        let m = Math.floor(sec / 60);
+        let s = sec % 60;
+        return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
     }
-}
 
-// 每秒更新
-updateTimer();
-let timerInterval = setInterval(updateTimer, 1000);
-</script>
+    function updateTimer() {
+        if (remainingSeconds <= 0) {
+            // 倒數結束，用 form submit 登出
+            document.getElementById('logout-form').submit();
+            clearInterval(timerInterval);
+        } else {
+            timerEl.textContent = `剩餘時間: ${formatTime(remainingSeconds)}`;
+            remainingSeconds--;
+        }
+    }
+
+    // 每秒更新
+    updateTimer();
+    let timerInterval = setInterval(updateTimer, 1000);
+    </script>
+@endif
 @endsection
