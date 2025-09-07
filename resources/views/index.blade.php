@@ -29,7 +29,7 @@
                     <div class="card-body p-4">
                         <div class="text-center">                            
                             <a href="https://drive.google.com/a/chc.edu.tw" target="_blank"><img src="{{ asset('assets/drive.png') }}" /></a>
-                            <h5 class="fw-bolder">Google Drive雲端硬碟</h5>                                                        
+                            <h5 class="fw-bolder">Google Drive 雲端硬碟</h5>                                                        
                         </div>
                     </div>                                        
                 </div>
