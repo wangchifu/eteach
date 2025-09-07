@@ -129,11 +129,16 @@ class OpenIDController extends Controller
         $url = "https://chc.sso.edu.tw/oidc/v1/logout-to-go";
         $post_logout_redirect_uri = env('APP_URL');
         //$id_token_hint = session('id_token');
-        $id_token_hint = Storage::disk('local')->get('id_token.txt');
-        $link = $url . "?post_logout_redirect_uri=".$post_logout_redirect_uri."&id_token_hint=" . $id_token_hint;
-
-        Session::flush();
-        return redirect($link);        
+        if(file_exists(storage_path('app/id_token.txt'))){
+          $id_token_hint = Storage::disk('local')->get('id_token.txt');
+          $link = $url . "?post_logout_redirect_uri=".$post_logout_redirect_uri."&id_token_hint=" . $id_token_hint;
+          Session::flush();
+          return redirect($link);        
+        }else{
+          Session::flush();
+          return redirect('/');
+        }        
+        
     }
 }
 
