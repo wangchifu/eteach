@@ -129,7 +129,8 @@
                     <div class="card-body p-4">
                         <div class="text-center">                            
                             <a href="https://www.canva.com/zh_tw/login/" target="_blank"><img src="{{ asset('assets/canva.png') }}" /></a>
-                            <h5 class="fw-bolder">canva</h5>                                                        
+                            <h5 class="fw-bolder">canva</h5>
+                            <span>請先登入 <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://myaccount.google.com" target="_blank">google服務</a> 再回來點上圖</span>
                         </div>
                     </div>                                        
                 </div>
@@ -139,7 +140,8 @@
                     <div class="card-body p-4">
                         <div class="text-center">                            
                             <a href="https://auth.openai.com/log-in-or-create-account" target="_blank"><img src="{{ asset('assets/chatgpt.png') }}" /></a>
-                            <h5 class="fw-bolder">chatgpt</h5>                                                        
+                            <h5 class="fw-bolder">chatgpt</h5>          
+                            <span>請先登入 <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://myaccount.google.com" target="_blank">google服務</a> 再回來點上圖</span>                                              
                         </div>
                     </div>                                        
                 </div>
