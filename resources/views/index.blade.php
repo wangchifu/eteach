@@ -13,8 +13,18 @@
             </div>
         </header>            
     @else        
-        <div class="container px-4 px-lg-5 my-2 text-center">
-            <div id="session-timer">剩餘時間: -- 分鐘</div>
+        <div class="container px-4 px-lg-5 my-3 text-center">
+            @if(session('workspace'))
+                <div class="alert alert-light border shadow-sm d-inline-flex align-items-center gap-2 mb-2 px-4 py-2 rounded-pill">
+                    <span class="fw-bold text-secondary">我的完整帳號是：</span>
+                    <span id="workspace-account" class="fw-bolder text-primary fs-5">{{ session('workspace') }}</span>
+                    <button type="button" class="btn btn-outline-primary btn-sm ms-2" onclick="copyWorkspaceAccount(this)">
+                        複製帳號
+                    </button>
+                </div>
+            @endif
+
+            <div id="session-timer" class="text-muted small">剩餘時間: -- 分鐘</div>
         </div>
         <form id="logout-form" action="/logout" method="get"></form>
     @endif
@@ -151,6 +161,25 @@
 </section>
 @if(!empty(session('user_data')))
     <script>
+    // 複製帳號至剪貼簿
+    function copyWorkspaceAccount(btn) {
+        const accountText = document.getElementById('workspace-account').innerText;
+        navigator.clipboard.writeText(accountText).then(() => {
+            const originalText = btn.innerText;
+            btn.innerText = '已複製！';
+            btn.classList.remove('btn-outline-primary');
+            btn.classList.add('btn-success');
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('btn-success');
+                btn.classList.add('btn-outline-primary');
+            }, 2000);
+        }).catch(err => {
+            console.error('複製失敗:', err);
+        });
+    }
+
     // 每分鐘 ping 一次，檢查是否過期
     setInterval(() => {
         fetch('/ping', {credentials: 'same-origin'})
@@ -165,7 +194,6 @@
             });
     }, 60000); // 60000 毫秒 = 1 分鐘
     
-
 
     // Laravel session.lifetime 單位是分鐘
     let sessionLifetime = {{ config('session.lifetime') }};

@@ -116,10 +116,13 @@ class OpenIDController extends Controller
       //die();
       
       $user_obj['name'] = $userinfo['name'];      
+      $user_obj['username'] = $userinfo['sub'];
       $user_obj['code'] = $edufile['schoolid'];
-        $schools_name = config('eteach.schools_name');
+      $schools_name = config('eteach.schools_name');
       $user_obj['school'] = $schools_name[$user_obj['code']];
       session(['user_data'=>$user_obj['school']." ".$user_obj['name']]);
+      session(['workspace'=>$user_obj['username']."@chc.edu.tw"]);
+
       return redirect('/');     
     }
 
