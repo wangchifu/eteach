@@ -38,6 +38,16 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
+                            <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://myaccount.google.com" target="_blank"><img src="{{ asset('assets/google.png') }}" /></a>
+                            <h5 class="fw-bolder">Google 帳戶</h5>                                                        
+                        </div>
+                    </div>                                        
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-40">
+                    <div class="card-body p-4">
+                        <div class="text-center">                            
                             <a href="https://drive.google.com/a/chc.edu.tw" target="_blank"><img src="{{ asset('assets/drive.png') }}" /></a>
                             <h5 class="fw-bolder">Google Drive 雲端硬碟</h5>                                                        
                         </div>
@@ -74,6 +84,16 @@
                     </div>                                        
                 </div>
             </div>     
+            <div class="col mb-5">
+                <div class="card h-40">
+                    <div class="card-body p-4">
+                        <div class="text-center">                            
+                            <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://gemini.google.com" target="_blank"><img src="{{ asset('assets/gemini.svg') }}" width="64" /></a>
+                            <h5 class="fw-bolder">Google Gemini</h5>                                                        
+                        </div>
+                    </div>                                        
+                </div>
+            </div>
             <div class="col mb-5">
                 <div class="card h-40">
                     <div class="card-body p-4">
@@ -137,10 +157,10 @@
             <div class="col mb-5">
                 <div class="card h-40">
                     <div class="card-body p-4">
-                        <div class="text-center">                            
-                            <a href="https://www.canva.com/zh_tw/login/" target="_blank"><img src="{{ asset('assets/canva.png') }}" /></a>
+                        <div class="text-center">          
+                            <span>請先登入 <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://myaccount.google.com" target="_blank"><img src="{{ asset('assets/google.png') }}" width="24"></a> 再回來點下圖</span>                                                                                                                 
+                            <a href="https://www.canva.com/zh_tw/login/" target="_blank"><img src="{{ asset('assets/canva.png') }}" /></a>                            
                             <h5 class="fw-bolder">canva</h5>
-                            <span>請先登入 <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://myaccount.google.com" target="_blank" class="btn btn-primary btn-sm">google服務</a> 再回來點上圖</span>
                         </div>
                     </div>                                        
                 </div>
@@ -148,10 +168,10 @@
             <div class="col mb-5">
                 <div class="card h-40">
                     <div class="card-body p-4">
-                        <div class="text-center">                            
+                        <div class="text-center">                    
+                            <span>請先登入 <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://myaccount.google.com" target="_blank"><img src="{{ asset('assets/google.png') }}" width="24"></a> 再回來點下圖</span>                                       
                             <a href="https://chatgpt.com/" target="_blank"><img src="{{ asset('assets/chatgpt.png') }}" /></a>
-                            <h5 class="fw-bolder">chatgpt</h5>       
-                            <span>請先登入 <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://myaccount.google.com" target="_blank" class="btn btn-primary btn-sm">google服務</a> 再回來點上圖</span>                               
+                            <h5 class="fw-bolder">chatgpt</h5>                                   
                         </div>
                     </div>                                        
                 </div>
