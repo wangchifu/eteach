@@ -38,7 +38,7 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://myaccount.google.com" target="_blank"><img src="{{ asset('assets/google.png') }}" /></a>
+                            <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://myaccount.google.com" target="_blank"><img src="{{ asset('assets/google.svg') }}" width="64" /></a>
                             <h5 class="fw-bolder">Google 帳戶</h5>                                                        
                         </div>
                     </div>                                        
@@ -48,7 +48,7 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://drive.google.com/a/chc.edu.tw" target="_blank"><img src="{{ asset('assets/drive.png') }}" /></a>
+                            <a href="https://drive.google.com/a/chc.edu.tw" target="_blank"><img src="{{ asset('assets/drive.svg') }}" width="64" /></a>
                             <h5 class="fw-bolder">Google Drive 雲端硬碟</h5>                                                        
                         </div>
                     </div>                                        
@@ -58,7 +58,7 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://mail.google.com/a/chc.edu.tw" target="_blank"><img src="{{ asset('assets/gmail.png') }}" /></a>
+                            <a href="https://mail.google.com/a/chc.edu.tw" target="_blank"><img src="{{ asset('assets/gmail.svg') }}" width="64" /></a>
                             <h5 class="fw-bolder">Gmail 信箱</h5>                                                        
                         </div>
                     </div>                                        
@@ -68,7 +68,7 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://meet.google.com" target="_blank"><img src="{{ asset('assets/meet.png') }}" /></a>
+                            <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://meet.google.com" target="_blank"><img src="{{ asset('assets/meet.svg') }}" width="64" /></a>
                             <h5 class="fw-bolder">Meet 線上會議</h5>                                                        
                         </div>
                     </div>                                        
@@ -78,7 +78,7 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://classroom.google.com" target="_blank"><img src="{{ asset('assets/classroom.png') }}" /></a>
+                            <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://classroom.google.com" target="_blank"><img src="{{ asset('assets/classroom.svg') }}" width="64" /></a>
                             <h5 class="fw-bolder">Classroom 線上教室</h5>                                                        
                         </div>
                     </div>                                        
