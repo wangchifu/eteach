@@ -275,32 +275,4 @@
     let timerInterval = setInterval(updateTimer, 1000);
     </script>
 @endif
-<script>
-    // 解析 JWT Token 的輔助函式
-function parseJwt(token) {
-  const base64Url = token.split('.')[1];
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  const jsonPayload = decodeURIComponent(
-    atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')
-  );
-  return JSON.parse(jsonPayload);
-}
-
-// Google 回傳結果的回呼函式 (Callback)
-function handleCredentialResponse(response) {
-  // response.credential 即為 ID Token
-  const responsePayload = parseJwt(response.credential);
-
-  console.log("使用者 Google ID: " + responsePayload.sub);
-  console.log("姓名: " + responsePayload.name);
-  console.log("大頭照: " + responsePayload.picture);
-  console.log("Email: " + responsePayload.email);
-
-  // 渲染至畫面
-  document.getElementById('user-info').innerHTML = `
-    <p>目前登入：<strong>${responsePayload.name}</strong> (${responsePayload.email})</p>
-    <img src="${responsePayload.picture}" alt="Profile Picture" style="border-radius: 50%; width: 50px;">
-  `;
-}
-</script>
 @endsection

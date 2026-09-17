@@ -11,9 +11,7 @@
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
-        <!-- 載入 Google Identity Services SDK -->
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />        
     </head>
     <body>
         <!-- Navigation-->
