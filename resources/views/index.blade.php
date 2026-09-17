@@ -33,7 +33,7 @@
 @section('content')
 <!-- 2. One Tap 設定區塊 -->
 <div id="g_id_onload"
-     data-client_id="926768432424-n8s9cpktd5f0bcug1oc4qkld58f0tlpv.apps.googleusercontent.com"
+     data-client_id="926768432424-sn23ltg79fscgnhpg9lqf6i06anvfpsf.apps.googleusercontent.com"
      data-callback="handleCredentialResponse"
      data-auto_select="true"
      data-use_fedcm_for_prompt="true">
