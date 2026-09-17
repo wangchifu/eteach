@@ -275,4 +275,30 @@
     let timerInterval = setInterval(updateTimer, 1000);
     </script>
 @endif
+<script>
+function parseJwt(token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+        atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')
+    );
+    return JSON.parse(jsonPayload);
+}
+
+function handleCredentialResponse(response) {
+    // 1. 解析 Google 回傳的 Token 取得資料
+    const googleUser = parseJwt(response.credential);
+    console.log("Google 使用者資料：", googleUser);
+
+    // 2. 直接用 JavaScript 把「登入按鈕」替換成「大頭照與姓名/Email」
+    const container = document.getElementById('google-profile-container');
+    container.innerHTML = `
+        <div class="d-flex align-items-center ms-2 border-start ps-2 border-secondary">
+            <img src="${googleUser.picture}" alt="Profile" style="width:30px; height:30px; border-radius:50%;" class="me-1">
+            <small class="fw-bold">${googleUser.name}</small>
+            <small class="text-muted ms-1">(${googleUser.email})</small>
+        </div>
+    `;
+}
+</script>
 @endsection
