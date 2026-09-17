@@ -31,6 +31,19 @@
 @endsection
 
 @section('content')
+<h2>Google 帳號登入狀態</h2>
+  
+  <!-- One Tap 提示視窗容器 -->
+  <div id="g_id_onload"
+       data-client_id="926768432424-sn23ltg79fscgnhpg9lqf6i06anvfpsf.apps.googleusercontent.com"
+       data-callback="handleCredentialResponse"
+       data-auto_select="true">
+  </div>
+
+  <!-- 用來顯示登入資訊的區域 -->
+  <div id="user-info"></div>
+
+  
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -98,7 +111,7 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://oidc.tanet.edu.tw/a/chc.sso.edu.tw/ServiceLogin?service=coolenglish" target="_blank"><img src="{{ asset('assets/cool.png') }}" /></a>
+                            <a href="https://oidc.tanet.edu.tw/a/chc.sso.edu.tw/ServiceLogin?service=coolenglish" target="_blank"><img src="{{ asset('assets/cool.png') }}" width="64" /></a>
                             <h5 class="fw-bolder">酷英網</h5>                                                        
                         </div>
                     </div>                                        
@@ -108,7 +121,7 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://oidc.tanet.edu.tw/a/chc.sso.edu.tw/ServiceLogin?service=adaptivelearning" target="_blank"><img src="{{ asset('assets/adl.png') }}" /></a>
+                            <a href="https://oidc.tanet.edu.tw/a/chc.sso.edu.tw/ServiceLogin?service=adaptivelearning" target="_blank"><img src="{{ asset('assets/adl.png') }}" width="64" /></a>
                             <h5 class="fw-bolder">因材網</h5>                                                        
                         </div>
                     </div>                                        
@@ -118,7 +131,7 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://oidc.tanet.edu.tw/a/chc.sso.edu.tw/ServiceLogin?service=junyiacademy" target="_blank"><img src="{{ asset('assets/junyiacademy.png') }}" /></a>
+                            <a href="https://oidc.tanet.edu.tw/a/chc.sso.edu.tw/ServiceLogin?service=junyiacademy" target="_blank"><img src="{{ asset('assets/junyiacademy.png') }}" width="64" /></a>
                             <h5 class="fw-bolder">均一教育平台</h5>                                                        
                         </div>
                     </div>                                        
@@ -128,7 +141,7 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://oidc.tanet.edu.tw/a/chc.sso.edu.tw/ServiceLogin?service=pagamo" target="_blank"><img src="{{ asset('assets/pagamo.png') }}" /></a>
+                            <a href="https://www.pagamo.org" target="_blank"><img src="{{ asset('assets/pagamo.png') }}" width="64" /></a>
                             <h5 class="fw-bolder">pagamo</h5>                                                        
                         </div>
                     </div>                                        
@@ -138,7 +151,17 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://oidc.tanet.edu.tw/a/chc.sso.edu.tw/ServiceLogin?service=oidcebook" target="_blank"><img src="{{ asset('assets/ebook.png') }}" /></a>
+                            <a href="https://www.pagamo.org/course/TZUCHIEP" target="_blank"><img src="{{ asset('assets/Tzuchi.jpeg') }}" width="64" /></a>
+                            <h5 class="fw-bolder">pagamo 環保防災</h5>                                                        
+                        </div>
+                    </div>                                        
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-40">
+                    <div class="card-body p-4">
+                        <div class="text-center">                            
+                            <a href="https://oidc.tanet.edu.tw/a/chc.sso.edu.tw/ServiceLogin?service=oidcebook" target="_blank"><img src="{{ asset('assets/ebook.png') }}" width="64" /></a>
                             <h5 class="fw-bolder">教育雲電子書</h5>                                                        
                         </div>
                     </div>                                        
@@ -148,7 +171,7 @@
                 <div class="card h-40">
                     <div class="card-body p-4">
                         <div class="text-center">                            
-                            <a href="https://cloud.edu.tw/oauth/eduCloud/index.php" target="_blank"><img src="{{ asset('assets/cloud.png') }}" /></a>
+                            <a href="https://cloud.edu.tw/oauth/eduCloud/index.php" target="_blank"><img src="{{ asset('assets/cloud.png') }}" width="64" /></a>
                             <h5 class="fw-bolder">教育雲數位學習入口</h5>                                                        
                         </div>
                     </div>                                        
@@ -159,7 +182,7 @@
                     <div class="card-body p-4">
                         <div class="text-center">          
                             <span>請先登入 <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://myaccount.google.com" target="_blank"><img src="{{ asset('assets/google.svg') }}" width="24"></a> 再回來點下圖</span>                                                                                                                 
-                            <a href="https://www.canva.com/zh_tw/login/" target="_blank"><img src="{{ asset('assets/canva.png') }}" /></a>                            
+                            <a href="https://www.canva.com/zh_tw/login/" target="_blank"><img src="{{ asset('assets/canva.png') }}" width="64" /></a>                            
                             <h5 class="fw-bolder">canva</h5>
                         </div>
                     </div>                                        
@@ -170,7 +193,7 @@
                     <div class="card-body p-4">
                         <div class="text-center">                    
                             <span>請先登入 <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://myaccount.google.com" target="_blank"><img src="{{ asset('assets/google.svg') }}" width="24"></a> 再回來點下圖</span>                                       
-                            <a href="https://chatgpt.com/" target="_blank"><img src="{{ asset('assets/chatgpt.png') }}" /></a>
+                            <a href="https://chatgpt.com/" target="_blank"><img src="{{ asset('assets/chatgpt.png') }}" width="64" /></a>
                             <h5 class="fw-bolder">chatgpt</h5>                                   
                         </div>
                     </div>                                        
@@ -243,4 +266,32 @@
     let timerInterval = setInterval(updateTimer, 1000);
     </script>
 @endif
+<script>
+    // 解析 JWT Token 的輔助函式
+function parseJwt(token) {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(
+    atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')
+  );
+  return JSON.parse(jsonPayload);
+}
+
+// Google 回傳結果的回呼函式 (Callback)
+function handleCredentialResponse(response) {
+  // response.credential 即為 ID Token
+  const responsePayload = parseJwt(response.credential);
+
+  console.log("使用者 Google ID: " + responsePayload.sub);
+  console.log("姓名: " + responsePayload.name);
+  console.log("大頭照: " + responsePayload.picture);
+  console.log("Email: " + responsePayload.email);
+
+  // 渲染至畫面
+  document.getElementById('user-info').innerHTML = `
+    <p>目前登入：<strong>${responsePayload.name}</strong> (${responsePayload.email})</p>
+    <img src="${responsePayload.picture}" alt="Profile Picture" style="border-radius: 50%; width: 50px;">
+  `;
+}
+</script>
 @endsection
