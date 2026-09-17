@@ -30,29 +30,7 @@
     @endif
 @endsection
 
-@section('content')
-<!-- 2. One Tap 設定區塊 -->
-<div id="g_id_onload"
-     data-client_id="926768432424-sn23ltg79fscgnhpg9lqf6i06anvfpsf.apps.googleusercontent.com"
-     data-callback="handleCredentialResponse"
-     data-auto_select="true"
-     data-use_fedcm_for_prompt="true">
-</div>
-
-<!-- 3. 備用登入按鈕 (當 One Tap 被瀏覽器阻擋時，使用者還能點按鈕登入) -->
-<div class="g_id_signin" 
-     data-type="standard"
-     data-size="large"
-     data-theme="outline"
-     data-text="sign_in_with"
-     data-shape="rectangular"
-     data-logo_alignment="left">
-</div>
-
-<!-- 4. 顯示使用者資訊的容器 -->
-<div id="user-info"></div>
-
-  
+@section('content') 
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
