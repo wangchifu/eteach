@@ -275,6 +275,7 @@
     let timerInterval = setInterval(updateTimer, 1000);
     </script>
 @endif
+<!-- 建議在 Google 按鈕外層包一個容器 ID，例如 id="google-auth-area" -->
 <script>
 function parseJwt(token) {
     const base64Url = token.split('.')[1];
@@ -286,19 +287,24 @@ function parseJwt(token) {
 }
 
 function handleCredentialResponse(response) {
-    // 1. 解析 Google 回傳的 Token 取得資料
-    const googleUser = parseJwt(response.credential);
-    console.log("Google 使用者資料：", googleUser);
+    // 1. 解碼 JWT Token 取得 Google 使用者資訊
+    const user = parseJwt(response.credential);
+    console.log("登入成功：", user);
 
-    // 2. 直接用 JavaScript 把「登入按鈕」替換成「大頭照與姓名/Email」
-    const container = document.getElementById('google-profile-container');
-    container.innerHTML = `
-        <div class="d-flex align-items-center ms-2 border-start ps-2 border-secondary">
-            <img src="${googleUser.picture}" alt="Profile" style="width:30px; height:30px; border-radius:50%;" class="me-1">
-            <small class="fw-bold">${googleUser.name}</small>
-            <small class="text-muted ms-1">(${googleUser.email})</small>
-        </div>
-    `;
+    // 2. 找到顯示 Google 按鈕或資訊的區塊（請確認你的 HTML 容器 class 或 ID）
+    // 假設你的 Google 登入按鈕放在 class 為 "g_id_signin" 的元素中：
+    const signinBtn = document.querySelector('.g_id_signin');
+    
+    if (signinBtn) {
+        // 3. 直接將按鈕替換成大頭照與姓名
+        signinBtn.outerHTML = `
+            <div class="d-flex align-items-center ms-2 ps-2 border-start border-secondary">
+                <img src="${user.picture}" alt="Google Profile" style="width:30px; height:30px; border-radius:50%;" class="me-1">
+                <span class="fw-bold me-1">${user.name}</span>
+                <small class="text-muted">(${user.email})</small>
+            </div>
+        `;
+    }
 }
 </script>
 @endsection
