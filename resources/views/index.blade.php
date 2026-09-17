@@ -23,11 +23,15 @@
                     </button>
 
                     @if(session('google_user'))
-                        <!-- 登入後：顯示大頭照、姓名與 Email -->
                         <div class="d-inline-flex align-items-center gap-2 ps-2 border-start border-secondary-subtle">
                             <img src="{{ session('google_user.picture') }}" alt="Profile Picture" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;">
                             <span class="fw-bold fs-6 text-dark">{{ session('google_user.name') }}</span>
                             <small class="text-muted">({{ session('google_user.email') }})</small>
+                            
+                            <!-- 新增：更換帳號按鈕 -->
+                            <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 ms-1" onclick="switchGoogleAccount('{{ session('google_user.email') }}')">
+                                更換帳號
+                            </button>
                         </div>
                     @else
                         <!-- 未登入：載入 One Tap 與 Google 登入按鈕 -->
@@ -324,6 +328,28 @@ function handleCredentialResponse(response) {
         }
     })
     .catch(error => console.error('Error:', error));
+}
+
+function switchGoogleAccount(email) {
+    // 1. 告訴 Google 撤銷目前帳號的提示授權（跳出選擇器）
+    if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+        google.accounts.id.revoke(email, done => {
+            console.log('已取消授權，準備切換帳號');
+        });
+    }
+
+    // 2. 清除後端的 Google Session 並重新整理，讓登入按鈕重新呈現
+    fetch("{{ route('save.google.user') }}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ name: null, email: null, picture: null }) // 送空值清空 Session
+    })
+    .then(() => {
+        location.reload();
+    });
 }
 </script>
 @endsection
