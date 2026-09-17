@@ -21,18 +21,26 @@
                     <button type="button" class="btn btn-outline-primary btn-sm ms-2 me-2" onclick="copyWorkspaceAccount(this)">
                         複製帳號
                     </button>
-
-                    <!-- Google 驗證/登入展現區域 (預設顯示登入按鈕) -->
-                    <div id="google-auth-area" class="d-inline-flex align-items-center ps-2 border-start border-secondary-subtle">
-                        <div class="g_id_signin" 
-                            data-type="standard"
-                            data-size="medium"
-                            data-theme="outline"
-                            data-text="signin_with"
-                            data-shape="rectangular"
-                            data-logo_alignment="left">
-                        </div>
+                    <!-- 2. One Tap 設定區塊 -->
+                    <div id="g_id_onload"
+                        data-client_id="926768432424-sn23ltg79fscgnhpg9lqf6i06anvfpsf.apps.googleusercontent.com"
+                        data-callback="handleCredentialResponse"
+                        data-auto_select="true"
+                        data-use_fedcm_for_prompt="true">
                     </div>
+
+                    <!-- 3. 備用登入按鈕 (當 One Tap 被瀏覽器阻擋時，使用者還能點按鈕登入) -->
+                    <div class="g_id_signin" 
+                        data-type="standard"
+                        data-size="large"
+                        data-theme="outline"
+                        data-text="sign_in_with"
+                        data-shape="rectangular"
+                        data-logo_alignment="left">
+                    </div>
+
+                    <!-- 4. 顯示使用者資訊的容器 -->
+                    <div id="user-info"></div>
                 </div>
             @endif
 
