@@ -18,9 +18,21 @@
                 <div class="alert alert-light border shadow-sm d-inline-flex align-items-center gap-2 mb-2 px-4 py-2 rounded-pill">
                     <span class="fw-bold text-secondary">我的完整帳號是：</span>
                     <span id="workspace-account" class="fw-bolder text-primary fs-5">{{ session('workspace') }}</span>
-                    <button type="button" class="btn btn-outline-primary btn-sm ms-2" onclick="copyWorkspaceAccount(this)">
+                    <button type="button" class="btn btn-outline-primary btn-sm ms-2 me-2" onclick="copyWorkspaceAccount(this)">
                         複製帳號
                     </button>
+
+                    <!-- Google 驗證/登入展現區域 (預設顯示登入按鈕) -->
+                    <div id="google-auth-area" class="d-inline-flex align-items-center ps-2 border-start border-secondary-subtle">
+                        <div class="g_id_signin" 
+                            data-type="standard"
+                            data-size="medium"
+                            data-theme="outline"
+                            data-text="signin_with"
+                            data-shape="rectangular"
+                            data-logo_alignment="left">
+                        </div>
+                    </div>
                 </div>
             @endif
 
@@ -30,29 +42,7 @@
     @endif
 @endsection
 
-@section('content')
-<!-- 2. One Tap 設定區塊 -->
-<div id="g_id_onload"
-     data-client_id="926768432424-sn23ltg79fscgnhpg9lqf6i06anvfpsf.apps.googleusercontent.com"
-     data-callback="handleCredentialResponse"
-     data-auto_select="true"
-     data-use_fedcm_for_prompt="true">
-</div>
-
-<!-- 3. 備用登入按鈕 (當 One Tap 被瀏覽器阻擋時，使用者還能點按鈕登入) -->
-<div class="g_id_signin" 
-     data-type="standard"
-     data-size="large"
-     data-theme="outline"
-     data-text="sign_in_with"
-     data-shape="rectangular"
-     data-logo_alignment="left">
-</div>
-
-<!-- 4. 顯示使用者資訊的容器 -->
-<div id="user-info"></div>
-
-  
+@section('content')  
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
