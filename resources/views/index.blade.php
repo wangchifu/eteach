@@ -68,9 +68,13 @@
             <div class="col mb-5">
                 <div class="card h-40">
                     <div class="card-body p-4">
-                        <div class="text-center">                            
+                        <div class="text-center">                                                        
                             <a href="https://www.google.com/a/chc.edu.tw/ServiceLogin?continue=https://myaccount.google.com" target="_blank"><img src="{{ asset('assets/google.svg') }}" width="64" /></a>
-                            <h5 class="fw-bolder">Google 帳戶</h5>                                                        
+                            <h5 class="fw-bolder">Google 帳戶</h5>     
+                            <!-- 提示文字區塊 -->
+                            <p class="text-danger small mb-0 mt-2">
+                                <i class="bi bi-exclamation-circle-fill me-1"></i>若顯示「無此 Google 帳戶」，請按上圖的 G 圖示進行登入，再按一個「我瞭解了」。
+                            </p>                                                   
                         </div>
                     </div>                                        
                 </div>
