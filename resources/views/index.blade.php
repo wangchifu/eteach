@@ -21,25 +21,36 @@
                     <button type="button" class="btn btn-outline-primary btn-sm ms-2 me-2" onclick="copyWorkspaceAccount(this)">
                         複製帳號
                     </button>
-                    <!-- 2. One Tap 設定區塊 -->
-                    <div id="g_id_onload"
-                        data-client_id="926768432424-sn23ltg79fscgnhpg9lqf6i06anvfpsf.apps.googleusercontent.com"
-                        data-callback="handleCredentialResponse"
-                        data-auto_select="true"
-                        data-use_fedcm_for_prompt="true">
-                    </div>
 
-                    <!-- 3. 備用登入按鈕 (當 One Tap 被瀏覽器阻擋時，使用者還能點按鈕登入) -->
-                    <div class="g_id_signin" 
-                        data-type="standard"
-                        data-size="large"
-                        data-theme="outline"
-                        data-text="sign_in_with"
-                        data-shape="rectangular"
-                        data-logo_alignment="left">
-                    </div>
+                    @if(session('google_user'))
+                        <!-- 登入後：顯示大頭照、姓名與 Email -->
+                        <div class="d-inline-flex align-items-center gap-2 ps-2 border-start border-secondary-subtle">
+                            <img src="{{ session('google_user.picture') }}" alt="Profile Picture" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;">
+                            <span class="fw-bold fs-6 text-dark">{{ session('google_user.name') }}</span>
+                            <small class="text-muted">({{ session('google_user.email') }})</small>
+                        </div>
+                    @else
+                        <!-- 未登入：載入 One Tap 與 Google 登入按鈕 -->
+                        <!-- 2. One Tap 設定區塊 -->
+                        <div id="g_id_onload"
+                            data-client_id="926768432424-sn23ltg79fscgnhpg9lqf6i06anvfpsf.apps.googleusercontent.com"
+                            data-callback="handleCredentialResponse"
+                            data-auto_select="true"
+                            data-use_fedcm_for_prompt="true">
+                        </div>
 
-                    <!-- 4. 顯示使用者資訊的容器 -->
+                        <!-- 3. 備用登入按鈕 -->
+                        <div class="g_id_signin" 
+                            data-type="standard"
+                            data-size="large"
+                            data-theme="outline"
+                            data-text="sign_in_with"
+                            data-shape="rectangular"
+                            data-logo_alignment="left">
+                        </div>
+                    @endif
+
+                    <!-- 4. 顯示使用者資訊的容器 (備用) -->
                     <div id="user-info"></div>
                 </div>
             @endif
@@ -285,24 +296,30 @@ function parseJwt(token) {
 }
 
 function handleCredentialResponse(response) {
-    // 1. 解碼 JWT Token 取得 Google 使用者資訊
     const user = parseJwt(response.credential);
-    console.log("登入成功：", user);
+    console.log("取得 Google 帳號，準備寫入 Session：", user);
 
-    // 2. 找到顯示 Google 按鈕或資訊的區塊（請確認你的 HTML 容器 class 或 ID）
-    // 假設你的 Google 登入按鈕放在 class 為 "g_id_signin" 的元素中：
-    const signinBtn = document.querySelector('.g_id_signin');
-    
-    if (signinBtn) {
-        // 3. 直接將按鈕替換成大頭照與姓名
-        signinBtn.outerHTML = `
-            <div class="d-flex align-items-center ms-2 ps-2 border-start border-secondary">
-                <img src="${user.picture}" alt="Google Profile" style="width:30px; height:30px; border-radius:50%;" class="me-1">
-                <span class="fw-bold me-1">${user.name}</span>
-                <small class="text-muted">(${user.email})</small>
-            </div>
-        `;
-    }
+    // 發送 AJAX 請求給 Laravel 後端
+    fetch("{{ route('save.google.user') }}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}' // Laravel CSRF 安全金鑰
+        },
+        body: JSON.stringify({
+            name: user.name,
+            email: user.email,
+            picture: user.picture
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'success') {
+            // 成功寫入 Session 後重新整理網頁，觸發 Blade 渲染頭像
+            location.reload();
+        }
+    })
+    .catch(error => console.error('Error:', error));
 }
 </script>
 @endsection
